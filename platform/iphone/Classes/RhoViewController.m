@@ -30,9 +30,14 @@
 @implementation RhoViewController
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    if ([[Rhodes sharedInstance] isRotationLocked])
-        return interfaceOrientation == UIInterfaceOrientationPortrait;
-	return YES;
+  NSString * device = [UIDevice currentDevice].model;
+  
+  if ([device hasPrefix:@"iPad"]) {
+    return interfaceOrientation == UIInterfaceOrientationLandscapeLeft || UIInterfaceOrientationLandscapeRight;
+  }
+  else {
+    return true;
+  }
 }
 
 @end
