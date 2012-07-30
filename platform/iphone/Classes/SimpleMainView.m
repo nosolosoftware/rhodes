@@ -325,22 +325,47 @@ static BOOL makeHiddenUntilLoadContent = YES;
     [self setContentRect:wFrame];
 }
 
-- (UIWebView*)newWebView:(CGRect)frame {
+///////////////////////////////////////////////////////////////
+///////////////////MODIFIED FOR MOBTEL/////////////////////////
+///////////////////////////////////////////////////////////////
+
+- (UIWebView*)newWebView:(CGRect)frame
+{
     UIWebView *w = [[UIWebView alloc] initWithFrame:frame];
     w.scalesPageToFit = YES;
     w.userInteractionEnabled = YES;
-    w.multipleTouchEnabled = YES;
+    w.multipleTouchEnabled = NO;
+    w.exclusiveTouch = YES;
     w.clipsToBounds = NO;
     w.dataDetectorTypes = UIDataDetectorTypeNone;
     w.delegate = self;
     w.autoresizesSubviews = YES;
-    //w.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     w.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     w.tag = RHO_TAG_WEBVIEW;
-	
+    
+    for (id subview in w.subviews)
+      if ([[subview class] isSubclassOfClass: [UIScrollView class]])
+      {
+        // Disables bounce and zoom
+        ((UIScrollView *)subview).bounces = NO;
+        ((UIScrollView *)subview).multipleTouchEnabled = NO;
+        ((UIScrollView *)subview).exclusiveTouch = YES;
+        ((UIScrollView *)subview).delegate = self;
+      }
+    
     assert([w retainCount] == 1);
     return w;
 }
+
+/* Event for each UIScrollView subview */
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+  return nil;
+}
+
+///////////////////////////////////////////////////////////////
+/////////////////END MODIFIED FOR MOBTEL///////////////////////
+///////////////////////////////////////////////////////////////
 
 - (id)init:(UIView*)p webView:(UIWebView*)w frame:(CGRect)frame bar_info:(NSDictionary*)bar_info web_bkg_color:(UIColor*)web_bkg_color {
 	[self init];
