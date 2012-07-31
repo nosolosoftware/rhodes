@@ -37,7 +37,7 @@
            interfaceOrientation == UIInterfaceOrientationLandscapeRight;
   }
   else {
-    return true;
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
   }
 }
 
