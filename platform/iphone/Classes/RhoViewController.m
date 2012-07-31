@@ -33,7 +33,8 @@
   NSString * device = [UIDevice currentDevice].model;
   
   if ([device hasPrefix:@"iPad"]) {
-    return interfaceOrientation == UIInterfaceOrientationLandscapeLeft || UIInterfaceOrientationLandscapeRight;
+    return interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
+           interfaceOrientation == UIInterfaceOrientationLandscapeRight;
   }
   else {
     return true;
