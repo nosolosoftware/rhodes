@@ -26,6 +26,7 @@
 
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <Foundation/Foundation.h>
+#import <sys/utsname.h>
 
 #include "common/RhoPort.h"
 #include "unzip/unzip.h"
@@ -786,6 +787,13 @@ int rho_sysimpl_get_property(char* szPropName, VALUE* resValue)
     }
     else if (strcasecmp("device_name", szPropName) == 0) {
         NSString *model = [[UIDevice currentDevice] machine];
+        *resValue = rho_ruby_create_string([model UTF8String]);
+        return 1;
+    }
+    else if (strcasecmp("ios_device_model", szPropName) == 0) {
+        struct utsname systemInfo;
+        uname(&systemInfo);
+        NSString *model = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
         *resValue = rho_ruby_create_string([model UTF8String]);
         return 1;
     }
