@@ -56,8 +56,8 @@ namespace rho.rubyext
             else if(name == "country") return "us";
             else if (name == "vendor") return Microsoft.Phone.Info.DeviceExtendedProperties.GetValue("DeviceManufacturer");
             else if (name == "device_name") return Microsoft.Phone.Info.DeviceExtendedProperties.GetValue("DeviceName");
-            else if (name == "real_screen_width") return "";
-            else if (name == "real_screen_height") return "";
+            else if (name == "real_screen_width") return "480";
+            else if (name == "real_screen_height") return "800";
             else if(name == "phone_id") {
               byte[] bytes = (byte[])Microsoft.Phone.Info.DeviceExtendedProperties.GetValue("DeviceUniqueId");
               return Convert.ToBase64String(bytes);
