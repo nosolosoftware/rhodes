@@ -57,6 +57,7 @@ public class RhodesApplication extends Application{
 	
     private static final String TAG = RhodesApplication.class.getSimpleName();
     private static Handler mHandler;
+    public static RhodesApplication instance;
 
     static AppEventObserver sRhodesAppActiveWatcher;
     static {
@@ -65,6 +66,10 @@ public class RhodesApplication extends Application{
 
     public static void handleAppStarted() {
         sRhodesAppActiveWatcher.run();
+    }
+    
+    public static Context getContext() {
+      return instance;
     }
     
     private ApplicationInfo getAppInfo() {
@@ -98,6 +103,8 @@ public class RhodesApplication extends Application{
         super.onCreate();
 
         Log.i(TAG, "Initializing...");
+        
+        instance = this;
         
         sRhodesAppActiveWatcher = AppState.AppStarted.addObserver("RhodesAppActiveObserver", true);
         
