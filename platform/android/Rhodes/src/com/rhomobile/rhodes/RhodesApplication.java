@@ -36,6 +36,7 @@ import android.content.pm.ApplicationInfo;
 import android.os.Handler;
 import android.os.Process;
 import android.util.Log;
+import android.content.Context;
 
 import com.rhomobile.rhodes.camera.Camera;
 import com.rhomobile.rhodes.extmanager.RhoExtManager;

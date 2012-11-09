@@ -69,6 +69,7 @@ public class SplashScreen implements MainView{
 
 	private boolean mFirstNavigate = true;
 	private long mStartTimeMs = 0;
+  private long mobtelSplashDelay = 3000;
 	private volatile String mUrlToNavigate = null;
 	private int mNavigateIndex = 0;
 	private Thread mSleepThread;
@@ -197,6 +198,8 @@ public class SplashScreen implements MainView{
             if (delay < 0)
                 delay = 0;
         }
+
+        SystemClock.sleep(mobtelSplashDelay);
 
         Logger.D(TAG, "DELAY for SplashScreen = " + String.valueOf(delay));
         final SplashScreen curView = this;
