@@ -62,6 +62,9 @@ namespace rho.rubyext
               byte[] bytes = (byte[])Microsoft.Phone.Info.DeviceExtendedProperties.GetValue("DeviceUniqueId");
               return Convert.ToBase64String(bytes);
             }
+            else if(name == "memory_size") return (((long) Microsoft.Phone.Info.DeviceExtendedProperties.GetValue("DeviceTotalMemory")) / 1000);
+            else if(name == "current_memory_usage") return (((long) Microsoft.Phone.Info.DeviceExtendedProperties.GetValue("ApplicationCurrentMemoryUsage")) / 1000);
+            else if(name == "peak_memory_usage") return (((long) Microsoft.Phone.Info.DeviceExtendedProperties.GetValue("ApplicationPeakMemoryUsage")) / 1000);
             else return "";
         }
 
