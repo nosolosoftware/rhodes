@@ -1229,6 +1229,7 @@ namespace "build" do
       generator.installLocation = 'auto'
       generator.minSdkVer = $min_sdk_level
       generator.maxSdkVer = $max_sdk_level
+      generator.screenOrientation = $app_config["android"]["orientation"] if $app_config["android"] and $app_config["android"]["orientation"]
 
       generator.usesLibraries['com.google.android.maps'] = true if $use_google_addon_api
 
