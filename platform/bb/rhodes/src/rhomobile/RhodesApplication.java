@@ -815,6 +815,7 @@ final public class RhodesApplication extends RhodesApplicationPlatform implement
     		{
     			m_nOrientation = nOrientation;
     			return;
+
     		}
     		
     		if ( m_nOrientation != nOrientation && m_bRubyInit )
@@ -1058,6 +1059,16 @@ final public class RhodesApplication extends RhodesApplicationPlatform implement
     	try {
     		RubyProgram obj = new xruby.version.main();
 	    	String pngname = "/apps/app/loading.png";
+
+        if (Display.getHeight() > Display.getWidth())
+        {
+          pngname = "/apps/app/loading-big.png";
+        }
+        else
+        {
+          pngname = "/apps/app/loading-small.png";
+        }
+	    	
 	    	is = obj.getClass().getResourceAsStream(pngname);
 	    	if ( is != null )
 	    	{

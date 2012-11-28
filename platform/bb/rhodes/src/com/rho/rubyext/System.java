@@ -353,6 +353,10 @@ public class System {
     		return ObjectFactory.createInteger(getScreenWidth()); 
     	if ( strPropName.equalsIgnoreCase("screen_height") )
     		return ObjectFactory.createInteger(getScreenHeight());
+    	if ( strPropName.equalsIgnoreCase("real_screen_width") )
+    		return ObjectFactory.createInteger(getScreenWidth()); 
+    	if ( strPropName.equalsIgnoreCase("real_screen_height") )
+    		return ObjectFactory.createInteger(getScreenHeight());
     	if ( strPropName.equalsIgnoreCase("screen_orientation")) {
     		if (getScreenHeight() >= getScreenWidth()) {
     			return ObjectFactory.createString("portrait");
