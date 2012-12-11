@@ -786,7 +786,7 @@ int rho_sysimpl_get_property(char* szPropName, VALUE* resValue)
         return 1;
     }
     else if (strcasecmp("device_name", szPropName) == 0) {
-        NSString *model = [[UIDevice currentDevice] machine];
+        NSString *model = [[UIDevice currentDevice] model];
         *resValue = rho_ruby_create_string([model UTF8String]);
         return 1;
     }
