@@ -332,9 +332,12 @@ public class RhodesActivity extends BaseActivity implements SplashScreen.SplashS
 
     @Override
     public void onSplashScreenGone(SplashScreen splashScreen) {
-        ViewGroup parent = (ViewGroup)splashScreen.getSplashView().getParent();
+      ViewGroup parent = (ViewGroup)splashScreen.getSplashView().getParent();
+      if (parent != null && splashScreen.getSplashView() != null)
+      {
         parent.removeView(splashScreen.getSplashView());
-        mMainView = splashScreen.getBackendView();
+      }
+      mMainView = splashScreen.getBackendView();
     }
 
     @Override
